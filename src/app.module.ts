@@ -4,6 +4,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { TransactionModule } from './transaction/transaction.module';
 import { AuthMiddleware } from './users/middleware/auth.middleware';
 import { UsersModule } from './users/users.module';
+import { UserTransactionModule } from './user-transaction/user-transaction.module';
 
 @Module({
   imports: [
@@ -11,6 +12,7 @@ import { UsersModule } from './users/users.module';
     MongooseModule.forRoot(process.env.DATABASE_URL),
     UsersModule,
     TransactionModule,
+    UserTransactionModule,
   ],
   controllers: [],
   providers: [],
