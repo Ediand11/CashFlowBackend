@@ -5,6 +5,10 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.use(cookieParser());
-  await app.listen(3000);
+  app.enableCors({
+    origin: process.env.URL_LOCAL,
+    credentials: true,
+  });
+  await app.listen(3010);
 }
 bootstrap();
