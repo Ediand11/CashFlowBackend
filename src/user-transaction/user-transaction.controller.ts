@@ -37,15 +37,12 @@ export class UserTransactionController {
     );
   }
 
-  @Get(':userEmail')
-  findOne(
-    @Request() request: ExpressRequest,
-    @Param('userEmail') userEmail: string,
-  ) {
+  @Get()
+  findOne(@Request() request: ExpressRequest) {
     if (!request.user) {
       throw new HttpException('Unauthorized', HttpStatus.UNAUTHORIZED);
     }
-    return this.userTransactionService.findOne(userEmail);
+    return this.userTransactionService.findOne(request.user.email);
   }
   //ToDo:Test Patch and Delete
   @Patch(':id')

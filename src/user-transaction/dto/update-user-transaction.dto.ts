@@ -7,7 +7,5 @@ export class UpdateUserTransactionDto extends PartialType(
   CreateUserTransactionDto,
 ) {
   @IsNotEmpty()
-  userEmail: string;
-  @IsNotEmpty()
   transactions: ITransaction[];
 }

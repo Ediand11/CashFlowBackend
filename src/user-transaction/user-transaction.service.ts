@@ -22,7 +22,6 @@ export class UserTransactionService {
     let userTransaction = await this.userTransactionModel
       .findOne({ userEmail })
       .exec();
-
     if (!userTransaction) {
       userTransaction = new this.userTransactionModel({
         userEmail,
@@ -43,7 +42,6 @@ export class UserTransactionService {
 
       userTransaction.transaction.push(...convertedTransactions);
     } else {
-      // Handle the case where newTransactions is not defined or not an array
       console.log(newTransactions);
       throw new Error('Invalid newTransactions provided');
     }
