@@ -56,7 +56,6 @@ export class UsersService {
     return {
       username: userEntity.username,
       email: userEntity.email,
-      token: this.generateJwt(userEntity),
     };
   }
 
