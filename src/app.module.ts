@@ -5,6 +5,7 @@ import { TransactionModule } from './transaction/transaction.module';
 import { AuthMiddleware } from './users/middleware/auth.middleware';
 import { UsersModule } from './users/users.module';
 import { UserTransactionModule } from './user-transaction/user-transaction.module';
+import { IncomeModule } from './income/income.module';
 
 @Module({
   imports: [
@@ -13,6 +14,7 @@ import { UserTransactionModule } from './user-transaction/user-transaction.modul
     UsersModule,
     TransactionModule,
     UserTransactionModule,
+    IncomeModule,
   ],
   controllers: [],
   providers: [],

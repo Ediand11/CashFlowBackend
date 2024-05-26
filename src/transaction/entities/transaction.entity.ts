@@ -2,6 +2,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
 export enum Categories {
   Food = 'Food',
+  Salary = 'Salary',
   Transportation = 'Transportation',
   Housing = 'Housing',
   Utilities = 'Utilities',
