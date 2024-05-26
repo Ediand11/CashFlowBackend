@@ -1,73 +1,167 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# API Requests Documentation
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## 1. Users
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+### Create User
 
-## Description
+- **Method:** POST
+- **URL:** `/users`
+- **Request Body:** JSON with fields `username`, `email`, `password`.
+- **Request Body Example:**
+  ```json
+  {
+    "username": "example",
+    "email": "example@example.com",
+    "password": "password123"
+  }
+  ```
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+### User Login
 
-## Installation
+- **Method:** POST
+- **URL:** `/users/login`
+- **Request Body:** JSON with fields `email`, `password`.
+- **Request Body Example:**
+  ```json
+  {
+    "email": "example@example.com",
+    "password": "password123"
+  }
+  ```
 
-```bash
-$ npm install
-```
+### Get Current User
 
-## Running the app
+- **Method:** GET
+- **URL:** `/users/user`
 
-```bash
-# development
-$ npm run start
+## 2. Transactions
 
-# watch mode
-$ npm run start:dev
+### Create Transaction
 
-# production mode
-$ npm run start:prod
-```
+- **Method:** POST
+- **URL:** `/transaction`
+- **Request Body:** JSON with fields `name`, `date`, `price`, `category`.
+- **Request Body Example:**
+  ```json
+  {
+    "name": "Coffee",
+    "date": "2023-01-01",
+    "price": "5.00",
+    "category": "Food"
+  }
+  ```
 
-## Test
+### Get All Transactions
 
-```bash
-# unit tests
-$ npm run test
+- **Method:** GET
+- **URL:** `/transaction`
 
-# e2e tests
-$ npm run test:e2e
+### Delete Transaction
 
-# test coverage
-$ npm run test:cov
-```
+- **Method:** DELETE
+- **URL:** `/transaction/:id`
+- **URL Parameters:** `id` - transaction identifier.
 
-## Support
+## 3. User Transactions
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+### Create User Transaction
 
-## Stay in touch
+- **Method:** POST
+- **URL:** `/user-transaction`
+- **Request Body:** JSON with an array of transactions.
+- **Request Body Example:**
+  ```json
+  {
+    "transactions": [
+      {
+        "name": "Groceries",
+        "date": "2023-01-02",
+        "price": "150.00",
+        "category": "Food"
+      }
+    ]
+  }
+  ```
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+### Get User Transaction
 
-## License
+- **Method:** GET
+- **URL:** `/user-transaction`
 
-Nest is [MIT licensed](LICENSE).
+### Update User Transaction
+
+- **Method:** PATCH
+- **URL:** `/user-transaction/:id`
+- **URL Parameters:** `id` - user transaction identifier.
+- **Request Body:** JSON with updated transaction data.
+- **Request Body Example:**
+  ```json
+  {
+    "transactions": [
+      {
+        "name": "Supermarket",
+        "date": "2023-01-03",
+        "price": "200.00",
+        "category": "Food"
+      }
+    ]
+  }
+  ```
+
+### Delete User Transaction
+
+- **Method:** DELETE
+- **URL:** `/user-transaction/:id`
+- **URL Parameters:** `id` - user transaction identifier.
+
+## 4. Incomes
+
+### Create Income
+
+- **Method:** POST
+- **URL:** `/income`
+- **Request Body:** JSON with an array of incomes.
+- **Request Body Example:**
+  ```json
+  {
+    "income": [
+      {
+        "name": "Salary",
+        "date": "2023-01-05",
+        "amount": "1000.00",
+        "category": "Salary"
+      }
+    ]
+  }
+  ```
+
+### Get All Incomes
+
+- **Method:** GET
+- **URL:** `/income`
+
+### Update Income
+
+- **Method:** PATCH
+- **URL:** `/income/:id`
+- **URL Parameters:** `id` - income identifier.
+- **Request Body:** JSON with updated income data.
+- **Request Body Example:**
+  ```json
+  {
+    "income": [
+      {
+        "name": "Bonus",
+        "date": "2023-01-06",
+        "amount": "500.00",
+        "category": "Bonus"
+      }
+    ]
+  }
+  ```
+
+### Delete Income
+
+- **Method:** DELETE
+- **URL:** `/income/:id`
+- **URL Parameters:** `id` - income identifier.
