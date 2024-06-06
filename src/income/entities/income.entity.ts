@@ -1,19 +1,29 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Schema as MongooseSchema } from 'mongoose';
-import { Categories } from 'src/transaction/entities/transaction.entity';
+
+export enum IncomeCategories {
+  Salary = 'Salary',
+  BusinessIncome = 'Business Income',
+  PassiveIncome = 'Passive Income (dividends, interest)',
+  SocialBenefits = 'Social Benefits (pensions, allowances)',
+}
 
 export interface IIncome {
   name: string;
   date: Date;
   amount: string;
-  category: Categories;
+  category: IncomeCategories;
 }
 
 const IncomeSchema = new MongooseSchema({
   name: { type: String, required: true },
   date: { type: Date, required: true },
   amount: { type: String, required: true },
-  category: { type: String, enum: Object.values(Categories), required: true },
+  category: {
+    type: String,
+    enum: Object.values(IncomeCategories),
+    required: true,
+  },
 });
 
 @Schema()
